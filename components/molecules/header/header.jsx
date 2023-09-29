@@ -1,6 +1,6 @@
 import styles from "./header.module.css";
 
-export const Header = ({updateCountry, updatePrice, updateSize}) => {
+export const Header = ({updateCountry, updatePrice, updateSize, updateFrom, updateTo}) => {
   return (
     <header className={styles.header}>
       <h1 className={styles.header__title}>Book It</h1>
@@ -18,14 +18,18 @@ export const Header = ({updateCountry, updatePrice, updateSize}) => {
         </select>
 
         <input
-          type="date"
-          className={`${styles.input} ${styles.filtersBox__input}`}
+        onChange={(e)=>updateFrom(e.target.value)}
+        type="date"
+        className={`${styles.input} ${styles.filtersBox__input}`}
           id=""
-        />
+          min = {`${new Date().toISOString().split('T')[0]}`}
+          />
         <input
+        onChange={(e)=>updateTo(e.target.value)}
           type="date"
           className={`${styles.input} ${styles.filtersBox__input}`}
           id=""
+          min = {`${new Date().toISOString().split('T')[0]}`}
         />
 
         <select
