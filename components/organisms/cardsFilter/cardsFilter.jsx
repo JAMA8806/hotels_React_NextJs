@@ -1,11 +1,13 @@
 "use client";
-import { useState } from "react";
-import { hotelsData } from "../../../services/getHotelsServices";
+import { useEffect, useState } from "react";
+import { hotelData } from "../../../services/getHotelsServices";
 import MediaCard from "../../molecules/card/card";
 import { Header } from "../../molecules/header/header";
 import styles from "./cardsFilter.module.css";
 import { hotelRooms } from "@/utils/helper";
 import { Alert, AlertTitle } from "@mui/material";
+
+
 
 export const CardsFilter = () => {
   const [selectedCountry, setSelectedCountry] = useState("all");
@@ -13,6 +15,16 @@ export const CardsFilter = () => {
   const [selectedSize, setSelectedSize] = useState("all");
   const [dateFrom, setDateFrom] = useState("all");
   const [dateTo, setDateTo] = useState("all");
+  const [hotelsData, setHotelsData] = useState([]);
+
+  const hotelsFetch = async() =>{
+    const data = await hotelData();
+    setHotelsData(data);
+
+  }
+  useEffect(()=>{
+    hotelsFetch();
+  },{});
   
   const filterHotels = (hotels) => {
     const newDateFrom = new Date(dateFrom)
@@ -64,7 +76,7 @@ export const CardsFilter = () => {
             );
           })
         ) : (
-          <Alert severity="info">
+          <Alert className= {styles.alert} severity="info">
             <AlertTitle>Info</AlertTitle>
             Cambia tu configuración — <strong>No hay hoteles</strong>
           </Alert>
