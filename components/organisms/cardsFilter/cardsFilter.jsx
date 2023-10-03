@@ -18,8 +18,14 @@ export const CardsFilter = () => {
   const [hotelsData, setHotelsData] = useState([]);
 
   const hotelsFetch = async() =>{
-    const data = await hotelData();
-    setHotelsData(data);
+    try {
+      const data = await hotelData();
+      setHotelsData(data);
+      console.log(data);
+      
+    } catch (error) {
+      console.error("error on getting the hotels data")
+    }
 
   }
   useEffect(()=>{
