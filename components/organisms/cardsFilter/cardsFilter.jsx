@@ -87,6 +87,7 @@ export const CardsFilter = ({getHotelsData}) => {
       <div className={styles.cardsContainer}>
         {filterHotels.length > 0 ? (
           filterHotels.map((hotel, index) => {
+            
             return (
               <MediaCard
                 key={index}
