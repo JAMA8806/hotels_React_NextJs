@@ -1,12 +1,20 @@
+import BasicButtons from "../../atoms/button/button";
 import styles from "./header.module.css";
 
-export const Header = ({updateCountry, updatePrice, updateSize, updateFrom, updateTo}) => {
+export const Header = ({
+  updateCountry,
+  updatePrice,
+  updateSize,
+  updateFrom,
+  updateTo,
+  updateReset
+}) => {
   return (
     <header className={styles.header}>
       <h1 className={styles.header__title}>Book It</h1>
       <div className={styles.filtersBox}>
         <select
-        onChange={(e)=>updateCountry(e.target.value)}
+          onChange={(e) => updateCountry(e.target.value)}
           name=""
           id=""
           className={`${styles.filtersBox__country} ${styles.input}`}>
@@ -18,22 +26,22 @@ export const Header = ({updateCountry, updatePrice, updateSize, updateFrom, upda
         </select>
 
         <input
-        onChange={(e)=>updateFrom(e.target.value)}
-        type="date"
-        className={`${styles.input} ${styles.filtersBox__input}`}
-          id=""
-          min = {`${new Date().toISOString().split('T')[0]}`}
-          />
-        <input
-        onChange={(e)=>updateTo(e.target.value)}
+          onChange={(e) => updateFrom(e.target.value)}
           type="date"
           className={`${styles.input} ${styles.filtersBox__input}`}
           id=""
-          min = {`${new Date().toISOString().split('T')[0]}`}
+          min={`${new Date().toISOString().split("T")[0]}`}
+        />
+        <input
+          onChange={(e) => updateTo(e.target.value)}
+          type="date"
+          className={`${styles.input} ${styles.filtersBox__input}`}
+          id=""
+          min={`${new Date().toISOString().split("T")[0]}`}
         />
 
         <select
-          onChange={(e)=>updateSize(e.target.value)}
+          onChange={(e) => updateSize(e.target.value)}
           name=""
           id=""
           className={`${styles.filtersBox__input} ${styles.input}`}>
@@ -44,7 +52,7 @@ export const Header = ({updateCountry, updatePrice, updateSize, updateFrom, upda
         </select>
 
         <select
-        onChange={(e)=>updatePrice(e.target.value)}
+          onChange={(e) => updatePrice(e.target.value)}
           name=""
           id=""
           className={`${styles.filtersBox__input} ${styles.input}`}>
@@ -54,6 +62,11 @@ export const Header = ({updateCountry, updatePrice, updateSize, updateFrom, upda
           <option value="$$$">$$$</option>
           <option value="$$$$">$$$$</option>
         </select>
+        <BasicButtons
+          onClick={updateReset}
+          className={`${styles.filtersBox__btn}`}
+          btnText={"Clear"}>
+        </BasicButtons>
       </div>
     </header>
   );

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { hotelData } from "../../../services/getHotelsServices";
+// import { hotelData } from "../../../services/getHotelsServices"; Service conf #1
 import MediaCard from "../../molecules/card/card";
 import { Header } from "../../molecules/header/header";
 import styles from "./cardsFilter.module.css";
@@ -9,30 +9,34 @@ import { Alert, AlertTitle } from "@mui/material";
 
 
 
-export const CardsFilter = () => {
+export const CardsFilter = ({getHotelsData}) => {
   const [selectedCountry, setSelectedCountry] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState("all");
   const [selectedSize, setSelectedSize] = useState("all");
   const [dateFrom, setDateFrom] = useState("all");
   const [dateTo, setDateTo] = useState("all");
-  const [hotelsData, setHotelsData] = useState([]);
+  const [filterHotels, setFilterHotels] = useState([]);
+ 
+ 
 
-  const hotelsFetch = async() =>{
-    try {
-      const data = await hotelData();
-      setHotelsData(data);
-      console.log(data);
+// Services Configuration #1 - useEffect and useState
+  // const [hotelsData, setHotelsData] = useState([]);
+
+  // const hotelsFetch = async() =>{
+  //   try {
+  //     const data = await hotelData();
+  //     setHotelsData(data);
+  //     console.log(data);
       
-    } catch (error) {
-      console.error("error on getting the hotels data")
-    }
+  //   } catch (error) {
+  //     console.error("error on getting the hotels data")
+  //   }
 
-  }
+  // }
+  // useEffect(()=>{
+  //   hotelsFetch();
+  // },{});
   useEffect(()=>{
-    hotelsFetch();
-  },{});
-  
-  const filterHotels = (hotels) => {
     const newDateFrom = new Date(dateFrom)
     const newDateTo = new Date(dateTo)
     const Today = new Date().setHours(0,0,0,0)
@@ -42,11 +46,9 @@ export const CardsFilter = () => {
     const newDateToLocal = new Date(
       newDateTo.getTime() + newDateTo.getTimezoneOffset() * 60000
     )
-    
-    const filteredHotels = hotels.filter((hotel) => {
+    const filteredHotels = getHotelsData.filter((hotel) => {
       const hotelsAvailability = Today + hotel.availabilityFrom
       const availabilityDays = hotelsAvailability + hotel.availabilityTo
-      
       
       const isCountryMatch =
         selectedCountry === "all" ||
@@ -56,11 +58,21 @@ export const CardsFilter = () => {
       const isSizeMatch =
         selectedSize === "all" || selectedSize === hotelRooms(hotel.rooms);
       const isAvailable = (dateFrom ==='all'  &&  dateTo ==='all' || newDateFromLocal >= hotelsAvailability && newDateToLocal <= availabilityDays )
-
+      
       return isCountryMatch && isPriceMatch && isSizeMatch && isAvailable;
     });
-    return filteredHotels;
-  };
+    setFilterHotels(filteredHotels);
+
+  },[selectedCountry, selectedPrice, selectedSize, dateFrom, dateTo]);
+   
+  const updateReset = ()=>{
+      setSelectedCountry("all");
+      setSelectedPrice("all");
+      setSelectedSize("all");
+      setDateFrom("all");
+      setDateTo("all");
+    };
+  // return filterHotels;
 
   return (
     <>
@@ -70,10 +82,11 @@ export const CardsFilter = () => {
         updateSize={setSelectedSize}
         updateFrom={setDateFrom}
         updateTo={setDateTo}
+        updateReset={updateReset}
       />
       <div className={styles.cardsContainer}>
-        {filterHotels(hotelsData).length > 0 ? (
-          filterHotels(hotelsData).map((hotel, index) => {
+        {filterHotels.length > 0 ? (
+          filterHotels.map((hotel, index) => {
             return (
               <MediaCard
                 key={index}

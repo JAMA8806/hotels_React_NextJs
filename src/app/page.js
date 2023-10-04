@@ -1,11 +1,15 @@
 
+// "use client";
 import { CardsFilterTemplate } from '../../components/templates/cardsFilter-template/cardsFilterTemplate'
-import styles from './page.module.css'
+import { hotelData } from '../../services/getHotelsServices'
 
-export default function Home() {
+
+export default async function Home() {
+  const getHotelsData = await hotelData(); 
   return (
     <>
-      <CardsFilterTemplate/>
+      <CardsFilterTemplate getHotelsData={getHotelsData}/>
     </>
   )
 }
+ 
