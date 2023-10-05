@@ -1,0 +1,59 @@
+.containerInfo {
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: white;
+    box-shadow: rgba(48, 48, 48, 0.1) 0px 0.25rem 0.5rem;
+    max-width: 450px;
+    background-color: beige;
+}
+.img{
+    width: 450px;
+    height: 450px;
+    border-radius: 5px;
+}
+.titleHotel {
+    color: #e26811;
+    /* color: rgb(128, 15, 113); */
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.descriptionHotel {
+    font-size: 20px;
+}
+.containerButton{
+    display: flex;
+    gap: 1rem;
+}
+
+.secondaryButton {
+    font-size: 12px;
+    font-weight: bold;
+    color: #e26811;
+    background-color: white;
+    border:#e26811 solid 1;
+    width: 120px;
+
+}
+
+.secondaryButton:hover {
+    color: #e26811;
+    border: 1px solid #e26811;
+}
+.buttonCardHotel {
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #e26811;
+    width: 120px;
+
+}
+
+.buttonCardHotel:hover {
+    color: #e26811;
+    border: 1px solid #e26811;
+}

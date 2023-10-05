@@ -10,7 +10,7 @@ export const Header = ({
   updateTo,
   updateReset
 }) => {
-  const selectRef = useRef(null)
+  const selectRef = useRef(0);
   const resetFilters = ()=>{
     updateReset();
     selectRef.current.selectedIndex = 0;
@@ -24,7 +24,6 @@ export const Header = ({
           ref={selectRef}
           name=""
           id=""
-          defaultValue={"all"}
           className={`${styles.filtersBox__country} ${styles.input}`}>
           <option value="all">All Countries</option>
           <option value="argentina">Argentina</option>
@@ -77,7 +76,6 @@ export const Header = ({
           <option value="$$$$">$$$$</option>
         </select>
         <button
-            
          onClick={resetFilters}
          className={`${styles.filtersBox__btn}`}
          btnText={"Clear"} >

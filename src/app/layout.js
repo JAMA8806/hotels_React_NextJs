@@ -1,3 +1,4 @@
+import Navbar from '../../components/atoms/button/navbar/navbar'
 import './globals.css'
 import { Dancing_Script } from 'next/font/google'
 
@@ -11,6 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Navbar></Navbar>
       <body className={fonts.className}>{children}</body>
     </html>
   )

@@ -76,8 +76,6 @@ export const CardsFilter = ({ getHotelsData }) => {
 
   return (
     <>
-      <Navbar>
-      </Navbar>
       <Header
         updateCountry={setSelectedCountry}
         updatePrice={setSelectedPrice}

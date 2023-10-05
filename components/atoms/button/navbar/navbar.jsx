@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import styles from './navbar.module.css'
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -16,9 +17,12 @@ export default function Navbar() {
         <Toolbar
         className={styles.toolbar}
         >
-          <Typography className={styles.Typography} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Home
-          </Typography>
+          <Link
+          href={"/"}>
+            <Typography className={styles.Typography} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Home
+            </Typography>
+          </Link>
           <Typography className={styles.Typography}variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Contacto
           </Typography>
