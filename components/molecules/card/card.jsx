@@ -5,10 +5,14 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styles from "./card.module.css";
+import Link from "next/link";
 
-export default function MediaCard({hotel, snackbar}) {
-  const price = "$".repeat(hotel.price)
-    
+export default function MediaCard({ hotel, snackbar }) {
+  const price = "$".repeat(hotel.price);
+  const hotelDetail = () => {
+    localStorage.setItem("selectedHotel", JSON.stringify(hotel));
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -29,7 +33,7 @@ export default function MediaCard({hotel, snackbar}) {
           className={styles.descriptionHotel}
           variant="body2"
           color="text.secondary">
-         {hotel.description}
+          {hotel.description}
         </Typography>
         <Typography
           className={styles.priceHotel}
@@ -44,13 +48,21 @@ export default function MediaCard({hotel, snackbar}) {
           Country:{hotel.country}
         </Typography>
       </CardContent>
-      <CardActions className = {styles.containerButton}>
-        <Button size="small"
-        className = {styles.buttonCardHotel}>Más</Button>
-        <Button  size="small"
-         className = {styles.buttonCardHotel}
-         onClick={()=>snackbar(true)}
-         >Reserva</Button>
+      <CardActions className={styles.containerButton}>
+        <Link href={`detail/${hotel.name}`}>
+          <Button
+            size="small"
+            className={styles.buttonCardHotel}
+            onClick={hotelDetail}>
+            Más
+          </Button>
+        </Link>
+        <Button
+          size="small"
+          className={styles.buttonCardHotel}
+          onClick={() => snackbar(true)}>
+          Reserva
+        </Button>
       </CardActions>
     </Card>
   );
