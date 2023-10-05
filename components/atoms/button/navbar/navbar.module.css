@@ -1,0 +1,33 @@
+.box{
+    display: flex;
+    justify-content:flex-end;
+    width: 100%;
+}
+.bar{
+    background-color: rgba(128, 131, 134, 0.387);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}
+.toolbar{
+    min-height: auto;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    width: 100vh;
+}
+
+.Typography{
+    display: flex;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 6rem;   
+    justify-self: center; 
+    
+}
+.Typography:hover{
+    background-color: #e26811 ;
+}

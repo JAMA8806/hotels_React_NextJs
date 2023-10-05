@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styles from "./card.module.css";
 
-export default function MediaCard({hotel}) {
+export default function MediaCard({hotel, snackbar}) {
   const price = "$".repeat(hotel.price)
     
   return (
@@ -48,7 +48,9 @@ export default function MediaCard({hotel}) {
         <Button size="small"
         className = {styles.buttonCardHotel}>Más</Button>
         <Button  size="small"
-         className = {styles.buttonCardHotel}>Reserva</Button>
+         className = {styles.buttonCardHotel}
+         onClick={()=>snackbar(true)}
+         >Reserva</Button>
       </CardActions>
     </Card>
   );
