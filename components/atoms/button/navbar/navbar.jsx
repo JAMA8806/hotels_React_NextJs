@@ -42,9 +42,12 @@ export default function Navbar() {
           <Typography className={styles.Typography}variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Contacto
           </Typography>
-          <Typography className={styles.Typography}variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Reservas
-          </Typography>
+          <Link 
+          href={"/reservations"}>
+            <Typography className={styles.Typography}variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Reservas
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addReservation } from "@/store/reservationSlice";
 
 export default function MediaCard({ hotel, snackbar }) {
+  console.log(hotel);
   const price = "$".repeat(hotel.price);
   const hotelDetail = () => {
     localStorage.setItem("selectedHotel", JSON.stringify(hotel));
