@@ -6,14 +6,13 @@ import { Header } from "../../molecules/header/header";
 import styles from "./cardsFilter.module.css";
 import { hotelRooms } from "@/utils/helper";
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
-import Navbar from "../../atoms/button/navbar/navbar";
 
 export const CardsFilter = ({ getHotelsData }) => {
   const [selectedCountry, setSelectedCountry] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState("all");
   const [selectedSize, setSelectedSize] = useState("all");
-  const [dateFrom, setDateFrom] = useState("all");
-  const [dateTo, setDateTo] = useState("all");
+  const [dateFrom, setDateFrom] = useState(0);
+  const [dateTo, setDateTo] = useState(0);
   const [filterHotels, setFilterHotels] = useState([]);
   const [snackbar, setSnackbar] = useState(false);
 
@@ -56,7 +55,7 @@ export const CardsFilter = ({ getHotelsData }) => {
       const isSizeMatch =
         selectedSize === "all" || selectedSize === hotelRooms(hotel.rooms);
       const isAvailable =
-        (dateFrom === "all" && dateTo === "all") ||
+        (dateFrom === 0 && dateTo === 0) ||
         (newDateFromLocal >= hotelsAvailability &&
           newDateToLocal <= availabilityDays);
 
@@ -69,8 +68,8 @@ export const CardsFilter = ({ getHotelsData }) => {
     setSelectedCountry("all");
     setSelectedPrice("all");
     setSelectedSize("all");
-    setDateFrom("all");
-    setDateTo("all");
+    setDateFrom(0);
+    setDateTo(0);
   };
   // return filterHotels;
 

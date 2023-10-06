@@ -10,18 +10,26 @@ export const Header = ({
   updateTo,
   updateReset
 }) => {
-  const selectRef = useRef(0);
+  const countryRef = useRef(null);
+  const priceRef = useRef(null);
+  const sizeRef = useRef(null);
+  const fromRef = useRef(null);
+  const toRef = useRef(null);
   const resetFilters = ()=>{
     updateReset();
-    selectRef.current.selectedIndex = 0;
+    countryRef.current.selectedIndex = 0;
+    priceRef.current.selectedIndex = 0;
+    sizeRef.current.selectedIndex = 0;
+    fromRef.current.selectedIndex = 0;
+    toRef.current.selectedIndex = 0;
   }
   return (
     <header className={styles.header}>
       <h1 className={styles.header__title}>Book It</h1>
       <div className={styles.filtersBox}>
         <select
+          ref={countryRef}
           onChange={(e) => updateCountry(e.target.value)}
-          ref={selectRef}
           name=""
           id=""
           className={`${styles.filtersBox__country} ${styles.input}`}>
@@ -34,25 +42,25 @@ export const Header = ({
 
         <input
           onChange={(e) => updateFrom(e.target.value)}
-          ref={selectRef}
+          ref={fromRef}
           type="date"
-          defaultValue={"all"}
+          defaultValue={0}
           className={`${styles.input} ${styles.filtersBox__input}`}
           id=""
           min={`${new Date().toISOString().split("T")[0]}`}
           />
         <input
-          ref={selectRef}
+          ref={toRef}
           onChange={(e) => updateTo(e.target.value)}
           type="date"
-          defaultValue={"all"}
+          defaultValue={0}
           className={`${styles.input} ${styles.filtersBox__input}`}
           id=""
           min={`${new Date().toISOString().split("T")[0]}`}
           />
 
         <select
-          ref={selectRef}
+          ref={sizeRef}
           onChange={(e) => updateSize(e.target.value)}
           name=""
           id=""
@@ -64,7 +72,7 @@ export const Header = ({
         </select>
 
         <select
-          ref={selectRef}
+          ref={priceRef}
           onChange={(e) => updatePrice(e.target.value)}
           name=""
           id=""
