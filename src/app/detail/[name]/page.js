@@ -1,10 +1,11 @@
 "use client";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Button } from "@mui/material";
+import { AppContext } from "@/store/CurrentProvider";
 
 const Detail = () => {
+  
   const [selectedHotel, setSelectedHotel] = useState({
     name: "",
     description: "",
@@ -12,11 +13,14 @@ const Detail = () => {
     photo: "",
   });
 
+  const {setDetailPage} = useContext(AppContext)
+
   useEffect(() => {
     const storedHotel = localStorage.getItem("selectedHotel");
     if (storedHotel) {
       setSelectedHotel(JSON.parse(storedHotel));
     }
+    setDetailPage()
   }, []);
   const { name, photo, description } = selectedHotel;
   //   console.log(selectedHotel);
