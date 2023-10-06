@@ -2,6 +2,7 @@ import { CurrentPageProvider } from "@/store/CurrentProvider";
 import Navbar from "../../components/atoms/button/navbar/navbar";
 import "./globals.css";
 import { Dancing_Script } from "next/font/google";
+import ReservationProvider from "@/store/reservationsProvider";
 
 const fonts = Dancing_Script({ subsets: ["latin"] });
 
@@ -13,10 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <CurrentPageProvider>
-        <Navbar></Navbar>
-        <body className={fonts.className}>{children}</body>
-      </CurrentPageProvider>
+      <ReservationProvider>
+        <CurrentPageProvider>
+          <Navbar></Navbar>
+          <body className={fonts.className}>{children}</body>
+        </CurrentPageProvider>
+      </ReservationProvider>
     </html>
   );
 }
