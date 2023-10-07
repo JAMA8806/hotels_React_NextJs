@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import BasicButtons from "../../atoms/button/button";
 import styles from "./header.module.css";
 
 export const Header = ({
